@@ -1,14 +1,12 @@
 [
-  {
-    "email": "user1@example.com",
-    "password": "password123"
-  },
-  {
-    "email": "user2@example.com",
-    "password": "securepass"
-  },
-  {
-    "email": "user3@example.com",
-    "password": "ml2024"
-  }
+    {
+        "nama_kapten": "JohnDoe",
+        "id_game_kapten": "123456",
+        "password": "password123"
+    },
+    {
+        "nama_kapten": "JaneSmith",
+        "id_game_kapten": "654321",
+        "password": "qwerty"
+    }
 ]
