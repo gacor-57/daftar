@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up & Sign In - Mobile Legends</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f4f4f4;
+    }
+    .container {
+      width: 350px;
+      background: white;
+      padding: 20px;
+      border-radius: 8px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      text-align: center;
+    }
+    input {
+      width: 100%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    button {
+      width: 100%;
+      padding: 10px;
+      background: #007bff;
+      border: none;
+      color: white;
+      cursor: pointer;
+      font-size: 16px;
+      border-radius: 5px;
+    }
+    button:hover {
+      background: #0056b3;
+    }
+    .hidden {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Container untuk Sign Up -->
+  <div class="container" id="signup-container">
+    <h2>Sign Up</h2>
+    <!-- Ganti input email dengan input teks untuk nama kapten/ID game tim -->
+    <input type="text" id="signup-captain" placeholder="Nama Kapten Tim / ID Game Tim" required>
+    <input type="password" id="signup-password" placeholder="Password" required>
+    <button onclick="signUp()">Register</button>
+    <p>Sudah punya akun? <a href="#" onclick="showSignIn()">Login</a></p>
+  </div>
+
+  <!-- Container untuk Sign In -->
+  <div class="container hidden" id="signin-container">
+    <h2>Sign In</h2>
+    <!-- Ganti input email dengan input teks untuk nama kapten/ID game tim -->
+    <input type="text" id="signin-captain" placeholder="Nama Kapten Tim / ID Game Tim" required>
+    <input type="password" id="signin-password" placeholder="Password" required>
+    <button onclick="signIn()">Login</button>
+    <p>Belum punya akun? <a href="#" onclick="showSignUp()">Daftar</a></p>
+  </div>
+
+  <script>
+    function showSignIn() {
+      document.getElementById('signup-container').classList.add('hidden');
+      document.getElementById('signin-container').classList.remove('hidden');
+    }
+
+    function showSignUp() {
+      document.getElementById('signin-container').classList.add('hidden');
+      document.getElementById('signup-container').classList.remove('hidden');
+    }
+
+    function signUp() {
+      // Ambil nilai dari input nama kapten/ID game tim dan password
+      let captain = document.getElementById('signup-captain').value;
+      let password = document.getElementById('signup-password').value;
+
+      // Validasi sederhana: pastikan nama kapten tidak kosong dan password minimal 6 karakter
+      if (captain.trim() !== "" && password.length >= 6) {
+        // Simpan data ke localStorage dengan kunci baru
+        localStorage.setItem('teamCaptain', captain);
+        localStorage.setItem('teamPassword', password);
+        alert('Registrasi berhasil! Silakan login.');
+        showSignIn();
+      } else {
+        alert('Masukkan nama kapten/ID game yang valid dan password minimal 6 karakter!');
+      }
+    }
+
+    function signIn() {
+      let captain = document.getElementById('signin-captain').value;
+      let password = document.getElementById('signin-password').value;
+      let storedCaptain = localStorage.getItem('teamCaptain');
+      let storedPassword = localStorage.getItem('teamPassword');
+
+      if (captain === storedCaptain && password === storedPassword) {
+        alert('Login berhasil!');
+        // Arahkan ke halaman daftar tim
+        window.location.href = 'daftar_tim.html';
+      } else {
+        alert('Nama kapten/ID game atau password salah!');
+      }
+    }
+  </script>
+
+</body>
+</html>
